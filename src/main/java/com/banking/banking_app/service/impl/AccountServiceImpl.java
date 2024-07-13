@@ -2,11 +2,15 @@ package com.banking.banking_app.service.impl;
 
 import com.banking.banking_app.dto.AccountDto;
 import com.banking.banking_app.entity.Account;
+import com.banking.banking_app.entity.User;
 import com.banking.banking_app.mapper.AccountMapper;
 import com.banking.banking_app.repository.AccountRepository;
+import com.banking.banking_app.repository.UserRepository;
 import com.banking.banking_app.service.AccountService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,14 +18,19 @@ import java.util.stream.Collectors;
 public class AccountServiceImpl implements AccountService {
 
     private AccountRepository accountRepository;
+    private UserRepository userRepository;
 
-    public AccountServiceImpl(AccountRepository accountRepository){
+    @Autowired
+    public AccountServiceImpl(AccountRepository accountRepository, UserRepository userRepository){
         this.accountRepository = accountRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
     public AccountDto createAccount(AccountDto accountDto) {
-        Account account = AccountMapper.mapToAccount(accountDto);
+        User user = userRepository.findById(accountDto.getUserId())
+                .orElseThrow(() -> new RuntimeException("User not found!"));
+        Account account = AccountMapper.mapToAccount(accountDto, user);
         Account savedAccount = accountRepository.save(account);
         return AccountMapper.mapToAccountDto(savedAccount);
     }
@@ -38,7 +47,7 @@ public class AccountServiceImpl implements AccountService {
     public AccountDto deposit(Long id, double amount) {
         Account account = accountRepository
                 .findById(id).orElseThrow(() -> new RuntimeException("Account does not exists"));
-        double total = account.getBalance() + amount;
+        BigDecimal total = account.getBalance().add(BigDecimal.valueOf(amount));
         account.setBalance(total);
         Account savedAccount = accountRepository.save(account);
         return AccountMapper.mapToAccountDto(savedAccount);
@@ -49,10 +58,10 @@ public class AccountServiceImpl implements AccountService {
         Account account = accountRepository
                 .findById(id).orElseThrow(() -> new RuntimeException("Account does not exists"));
 
-        if(account.getBalance() < amount){
+        if(account.getBalance().compareTo(BigDecimal.valueOf(amount)) < 0){
             throw new RuntimeException("Insufficient amount");
         }
-        double total = account.getBalance() - amount;
+        BigDecimal total = account.getBalance().subtract(BigDecimal.valueOf(amount));
         account.setBalance(total);
         Account savedAccount = accountRepository.save(account);
         return AccountMapper.mapToAccountDto(savedAccount);
@@ -62,7 +71,7 @@ public class AccountServiceImpl implements AccountService {
     public List<AccountDto> getAllAccounts() {
 
         List<Account> accounts = accountRepository.findAll();
-        return accounts.stream().map((account) -> AccountMapper.mapToAccountDto(account))
+        return accounts.stream().map(AccountMapper::mapToAccountDto)
                 .collect(Collectors.toList());
     }
 
