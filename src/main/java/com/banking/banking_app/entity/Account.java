@@ -1,15 +1,15 @@
 package com.banking.banking_app.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.math.BigDecimal;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Table(name= "accounts")
 @Entity
 public class Account {
@@ -17,7 +17,13 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "account_holder_name")
+    @Column(name = "account_holder_name", nullable = false)
     private String accountHolderName;
-    private double balance;
+
+    @Column(name = "account_balance")
+    private BigDecimal balance;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 }
