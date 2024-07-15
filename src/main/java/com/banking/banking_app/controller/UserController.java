@@ -1,5 +1,6 @@
 package com.banking.banking_app.controller;
 
+import com.banking.banking_app.dto.LoginDto;
 import com.banking.banking_app.dto.UserDto;
 import com.banking.banking_app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,16 @@ public class UserController {
     public ResponseEntity<UserDto> registerUser(@RequestBody UserDto userDto){
         UserDto registeredUser = userService.registerUser(userDto);
         return new ResponseEntity<>(registeredUser, HttpStatus.OK);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<UserDto> loginUser(@RequestBody LoginDto loginDto){
+        UserDto loggedInUser = userService.login(loginDto);
+        if (loggedInUser != null) {
+            return new ResponseEntity<>(loggedInUser, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
     }
 
 

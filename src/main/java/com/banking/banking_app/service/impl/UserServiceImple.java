@@ -1,5 +1,6 @@
 package com.banking.banking_app.service.impl;
 
+import com.banking.banking_app.dto.LoginDto;
 import com.banking.banking_app.dto.UserDto;
 import com.banking.banking_app.entity.User;
 import com.banking.banking_app.mapper.UserMapper;
@@ -35,5 +36,13 @@ public class UserServiceImple implements UserService {
         user.setPassword(PasswordUtil.hashPassword(user.getPassword()));
         User savedUser = userRepository.save(user);
         return UserMapper.mapToUserDto(savedUser);
+    }
+    @Override
+    public UserDto login(LoginDto loginDto) {
+        User user = userRepository.findByUsername(loginDto.getUsername());
+        if (user != null && PasswordUtil.checkPassword(loginDto.getPassword(), user.getPassword())) {
+            return UserMapper.mapToUserDto(user);
+        }
+        return null;
     }
 }
