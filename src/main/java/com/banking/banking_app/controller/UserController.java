@@ -35,14 +35,13 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<UserDto> loginUser(@RequestBody LoginDto loginDto){
-        UserDto loggedInUser = userService.login(loginDto);
-        if (loggedInUser != null) {
-            return new ResponseEntity<>(loggedInUser, HttpStatus.OK);
+    public ResponseEntity<?> login(@RequestBody LoginDto loginDto) {
+        UserDto userDto = userService.login(loginDto);
+        if (userDto != null) {
+            return ResponseEntity.ok(userDto);
         } else {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid username or password");
         }
     }
-
 
 }
