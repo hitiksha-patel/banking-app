@@ -3,6 +3,7 @@ package com.banking.banking_app.service.impl;
 import com.banking.banking_app.dto.LoginDto;
 import com.banking.banking_app.dto.UserDto;
 import com.banking.banking_app.entity.User;
+import com.banking.banking_app.exception.UserAlreadyExistsException;
 import com.banking.banking_app.mapper.UserMapper;
 import com.banking.banking_app.repository.UserRepository;
 import com.banking.banking_app.service.UserService;
@@ -37,6 +38,12 @@ public class UserServiceImple implements UserService {
 
     @Override
     public UserDto registerUser(UserDto userDto) {
+        if (userRepository.findByUsername(userDto.getUsername()) != null){
+            throw new UserAlreadyExistsException("User with username " + userDto.getUsername() + " already exists");
+        }
+        if (userRepository.findByEmail(userDto.getEmail()) != null ){
+            throw new UserAlreadyExistsException("User with email " + userDto.getEmail() + " already exists");
+        }
         User user = UserMapper.mapToUser(userDto);
         user.setPassword(PasswordUtil.hashPassword(user.getPassword())); // Ensuring password is hashed using BCrypt
         User savedUser = userRepository.save(user);

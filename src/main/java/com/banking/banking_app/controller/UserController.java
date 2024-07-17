@@ -2,6 +2,7 @@ package com.banking.banking_app.controller;
 
 import com.banking.banking_app.dto.LoginDto;
 import com.banking.banking_app.dto.UserDto;
+import com.banking.banking_app.exception.UserAlreadyExistsException;
 import com.banking.banking_app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,9 +30,13 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<UserDto> registerUser(@RequestBody UserDto userDto){
-        UserDto registeredUser = userService.registerUser(userDto);
-        return new ResponseEntity<>(registeredUser, HttpStatus.OK);
+    public ResponseEntity<?> registerUser(@RequestBody UserDto userDto){
+        try {
+            UserDto registeredUser = userService.registerUser(userDto);
+            return new ResponseEntity<>(registeredUser, HttpStatus.OK);
+        }catch (UserAlreadyExistsException e){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        }
     }
 
     @PostMapping("/login")
