@@ -20,6 +20,7 @@ public class UserMapper {
                 .lastname(user.getLastname())
                 .email(user.getEmail())
                 .phone(user.getPhone())
+                .role(user.getRole())
                 .accountIds(user.getAccounts() == null ? new ArrayList<>() :
                         user.getAccounts().stream().map(Account::getId).collect(Collectors.toList()))
                 .build();
@@ -39,6 +40,7 @@ public class UserMapper {
                 .email(userDto.getEmail())
                 .phone(userDto.getPhone())
                 .password(userDto.getPassword())
+                .role(userDto.getRole())
                 .accounts(userDto.getAccountIds() == null ? new ArrayList<>() :
                         userDto.getAccountIds().stream().map(id -> {
                             Account account = new Account();
