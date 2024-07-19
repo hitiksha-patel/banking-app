@@ -7,10 +7,7 @@ import com.banking.banking_app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -22,11 +19,6 @@ public class UserController {
 
     public UserController(UserService userService){
         this.userService = userService;
-    }
-
-    @PostMapping
-    public ResponseEntity<UserDto> addUser(@RequestBody UserDto userDto){
-        return new ResponseEntity<>(userService.createUser(userDto), HttpStatus.CREATED);
     }
 
     @PostMapping("/register")
@@ -48,5 +40,15 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid username or password");
         }
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<UserDto> updateUser(@PathVariable Long id, @RequestBody UserDto userDto) {
+        System.out.println("Received update request for user ID: " + id);
+        System.out.println("Request body: " + userDto);
+        UserDto updatedUser = userService.updateUser(id, userDto);
+        System.out.println("Update successful for user ID: " + id);
+        return ResponseEntity.ok(updatedUser);
+    }
+
 
 }
