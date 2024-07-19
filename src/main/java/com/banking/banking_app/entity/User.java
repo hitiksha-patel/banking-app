@@ -45,6 +45,7 @@ public class User implements UserDetails {
     private List<Account> accounts = new ArrayList<>(); // Initialize to an empty list
 
     // Custom field to hold user role, assuming role is a simple string
+    @Column(name = "role", nullable = false)
     private String role;
 
     @Override
