@@ -22,4 +22,5 @@ public class UserDto {
     private List<Long> accountIds;
     private String password;
     private String token;
+    private String role;
 }
