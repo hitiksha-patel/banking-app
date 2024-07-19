@@ -125,5 +125,22 @@ public class UserServiceImple implements UserService {
         }
     }
 
+    @Override
+    public UserDto getUserByUsername(String username) {
+        try {
+            User user = userRepository.findByUsername(username);
+            if (user == null) {
+                throw new UserNotFoundException("User not found with username: " + username);
+            }
+            return UserMapper.mapToUserDto(user);
+        } catch (UserNotFoundException e) {
+            System.out.println(e.getMessage());
+            throw e; // Re-throw the exception to be handled by the controller
+        } catch (Exception e) {
+            System.out.println("An error occurred while retrieving user by username: " + e.getMessage());
+            e.printStackTrace();
+            throw new RuntimeException("An error occurred while retrieving user by username", e); // Re-throw as a generic runtime exception
+        }
+    }
 
 }
