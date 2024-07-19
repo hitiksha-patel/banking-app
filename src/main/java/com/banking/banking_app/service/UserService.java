@@ -8,4 +8,5 @@ public interface UserService {
     UserDto registerUser(UserDto userDto);
     UserDto login(LoginDto loginDto);
     UserDto updateUser(Long userId, UserDto userDto);
+    UserDto getUserByUsername(String username);
 }
