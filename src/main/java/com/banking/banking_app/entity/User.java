@@ -41,8 +41,8 @@ public class User implements UserDetails {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Account> accounts = new ArrayList<>(); // Initialize to an empty list
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private List<Account> accounts;
 
     // Custom field to hold user role, assuming role is a simple string
     @Column(name = "role", nullable = false)
@@ -71,5 +71,9 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public User(Long id) {
+        this.id = id;
     }
 }
