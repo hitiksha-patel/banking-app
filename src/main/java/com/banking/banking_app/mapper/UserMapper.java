@@ -1,7 +1,6 @@
 package com.banking.banking_app.mapper;
 
 import com.banking.banking_app.dto.UserDto;
-import com.banking.banking_app.entity.Account;
 import com.banking.banking_app.entity.User;
 
 import java.util.ArrayList;
@@ -21,8 +20,8 @@ public class UserMapper {
                 .email(user.getEmail())
                 .phone(user.getPhone())
                 .role(user.getRole())
-                .accountIds(user.getAccounts() == null ? new ArrayList<>() :
-                        user.getAccounts().stream().map(Account::getId).collect(Collectors.toList()))
+                .accounts(user.getAccounts() == null ? new ArrayList<>() :
+                        user.getAccounts().stream().map(AccountMapper::mapToAccountDto).collect(Collectors.toList()))
                 .build();
         System.out.println("Mapped User to UserDto: " + userDto);
         return userDto;
@@ -41,12 +40,8 @@ public class UserMapper {
                 .phone(userDto.getPhone())
                 .password(userDto.getPassword())
                 .role(userDto.getRole())
-                .accounts(userDto.getAccountIds() == null ? new ArrayList<>() :
-                        userDto.getAccountIds().stream().map(id -> {
-                            Account account = new Account();
-                            account.setId(id);
-                            return account;
-                        }).collect(Collectors.toList()))
+                .accounts(userDto.getAccounts() == null ? new ArrayList<>() :
+                        userDto.getAccounts().stream().map(AccountMapper::mapToAccount).collect(Collectors.toList()))
                 .build();
         System.out.println("Mapped UserDto to User: " + user);
         return user;
