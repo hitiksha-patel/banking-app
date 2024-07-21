@@ -10,6 +10,7 @@ import com.banking.banking_app.mapper.UserMapper;
 import com.banking.banking_app.repository.AccountRepository;
 import com.banking.banking_app.repository.UserRepository;
 import com.banking.banking_app.service.AccountService;
+import com.banking.banking_app.util.AuthUtil;
 import com.banking.banking_app.util.PasswordUtil;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class AccountServiceImpl implements AccountService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private AuthUtil authUtil;
 
     @Autowired
     public AccountServiceImpl(AccountRepository accountRepository, UserRepository userRepository){
@@ -80,8 +84,14 @@ public class AccountServiceImpl implements AccountService {
     @Transactional
     public AccountDto updateAccount(Long accountId, AccountDto accountDto) {
         try {
+            User authenticatedUser = authUtil.getAuthenticatedUser();
+
             Account existingAccount = accountRepository.findById(accountId)
                     .orElseThrow(() -> new UserNotFoundException("Account not found with id " + accountId));
+
+            if (!existingAccount.getUser().getId().equals(authenticatedUser.getId())) {
+                throw new RuntimeException("You do not have permission to update this account.");
+            }
 
             existingAccount.setAccountHolderName(accountDto.getAccountHolderName());
 

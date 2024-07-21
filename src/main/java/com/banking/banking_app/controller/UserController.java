@@ -49,10 +49,7 @@ public class UserController {
 
     @PutMapping("/{id}")
     public ResponseEntity<UserDto> updateUser(@PathVariable Long id, @RequestBody UserDto userDto) {
-        System.out.println("Received update request for user ID: " + id);
-        System.out.println("Request body: " + userDto);
         UserDto updatedUser = userService.updateUser(id, userDto);
-        System.out.println("Update successful for user ID: " + id);
         return ResponseEntity.ok(updatedUser);
     }
 
@@ -83,7 +80,6 @@ public class UserController {
             System.out.println(e.getMessage());
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         } catch (Exception e) {
-            System.out.println("An error occurred while fetching the logged-in user's profile: " + e.getMessage());
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }

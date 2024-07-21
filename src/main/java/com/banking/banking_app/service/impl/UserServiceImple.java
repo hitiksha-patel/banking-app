@@ -34,30 +34,22 @@ public class UserServiceImple implements UserService {
     @Override
     public UserDto registerUser(UserDto userDto) {
         try {
-            // Check if username already exists
             if (userRepository.findByUsername(userDto.getUsername()) != null) {
                 throw new UserAlreadyExistsException("User with username " + userDto.getUsername() + " already exists");
             }
 
-            // Check if email already exists
             if (userRepository.findByEmail(userDto.getEmail()) != null) {
                 throw new UserAlreadyExistsException("User with email " + userDto.getEmail() + " already exists");
             }
 
-            // Map UserDto to User entity
             User user = UserMapper.mapToUser(userDto);
-            // Ensure password is hashed
             user.setPassword(PasswordUtil.hashPassword(user.getPassword()));
-            // Set a default role
             user.setRole("ROLE_USER");
 
-            // Save user to repository
             User savedUser = userRepository.save(user);
-            // Return mapped UserDto
             return UserMapper.mapToUserDto(savedUser);
 
         } catch (UserAlreadyExistsException e) {
-            System.out.println(e.getMessage());
             throw new UserAlreadyExistsException("This user is already exists");
         } catch (Exception e) {
             e.printStackTrace();
@@ -81,12 +73,10 @@ public class UserServiceImple implements UserService {
                 userDto.setToken(token); // Include the token in the UserDto
                 return userDto;
             } else {
-                System.out.println("Invalid password for user: " + loginDto.getUsername());
                 throw new InvalidPasswordException("Invalid Password for username: " + loginDto.getUsername());
             }
         }
         catch (UserNotFoundException e) {
-            System.out.println(e.getMessage());
             throw new UserNotFoundException("User not found: " + loginDto.getUsername());
         }
     }
@@ -137,7 +127,6 @@ public class UserServiceImple implements UserService {
             System.out.println(e.getMessage());
             throw e; // Re-throw the exception to be handled by the controller
         } catch (Exception e) {
-            System.out.println("An error occurred while retrieving user by username: " + e.getMessage());
             e.printStackTrace();
             throw new RuntimeException("An error occurred while retrieving user by username", e); // Re-throw as a generic runtime exception
         }

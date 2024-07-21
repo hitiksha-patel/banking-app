@@ -63,10 +63,7 @@ public class AccountController {
 
     @PutMapping("/{id}")
     public ResponseEntity<AccountDto> updateAccount(@PathVariable Long id, @RequestBody AccountDto accountDto) {
-        System.out.println("Received update request for user ID: " + id);
-        System.out.println("Request body: " + accountDto);
         AccountDto updatedAccount = accountService.updateAccount(id, accountDto);
-        System.out.println("Update successful for user ID: " + id);
         return ResponseEntity.ok(updatedAccount);
     }
 }

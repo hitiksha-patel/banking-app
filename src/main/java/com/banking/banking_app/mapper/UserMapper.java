@@ -23,7 +23,6 @@ public class UserMapper {
                 .accounts(user.getAccounts() == null ? new ArrayList<>() :
                         user.getAccounts().stream().map(AccountMapper::mapToAccountDto).collect(Collectors.toList()))
                 .build();
-        System.out.println("Mapped User to UserDto: " + userDto);
         return userDto;
     }
 
@@ -43,7 +42,6 @@ public class UserMapper {
                 .accounts(userDto.getAccounts() == null ? new ArrayList<>() :
                         userDto.getAccounts().stream().map(AccountMapper::mapToAccount).collect(Collectors.toList()))
                 .build();
-        System.out.println("Mapped UserDto to User: " + user);
         return user;
     }
 }
