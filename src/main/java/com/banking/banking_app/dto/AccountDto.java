@@ -15,6 +15,6 @@ public class AccountDto {
 
     private Long id;
     private String accountHolderName;
-    private BigDecimal balance;
+    private Double balance;
     private Long userId;
 }
