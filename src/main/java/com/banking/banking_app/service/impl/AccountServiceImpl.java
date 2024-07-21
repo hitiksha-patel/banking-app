@@ -1,13 +1,16 @@
 package com.banking.banking_app.service.impl;
 
 import com.banking.banking_app.dto.AccountDto;
+import com.banking.banking_app.dto.UserDto;
 import com.banking.banking_app.entity.Account;
 import com.banking.banking_app.entity.User;
 import com.banking.banking_app.exception.UserNotFoundException;
 import com.banking.banking_app.mapper.AccountMapper;
+import com.banking.banking_app.mapper.UserMapper;
 import com.banking.banking_app.repository.AccountRepository;
 import com.banking.banking_app.repository.UserRepository;
 import com.banking.banking_app.service.AccountService;
+import com.banking.banking_app.util.PasswordUtil;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -70,6 +73,29 @@ public class AccountServiceImpl implements AccountService {
             System.out.println("An error occurred while creating the account: " + e.getMessage());
             e.printStackTrace();
             throw new RuntimeException("An error occurred while creating the account", e); // Re-throw as a generic runtime exception
+        }
+    }
+
+    @Override
+    @Transactional
+    public AccountDto updateAccount(Long accountId, AccountDto accountDto) {
+        try {
+            Account existingAccount = accountRepository.findById(accountId)
+                    .orElseThrow(() -> new UserNotFoundException("Account not found with id " + accountId));
+
+            existingAccount.setAccountHolderName(accountDto.getAccountHolderName());
+
+
+            Account updatedAccount = accountRepository.save(existingAccount);
+            // Return mapped UserDto
+            return AccountMapper.mapToAccountDto(updatedAccount);
+
+        } catch (UserNotFoundException e) {
+            System.out.println(e.getMessage());
+            throw new UserNotFoundException("User not found");
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Something went wrong!");
         }
     }
 
