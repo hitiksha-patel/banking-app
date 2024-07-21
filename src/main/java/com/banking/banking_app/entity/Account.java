@@ -3,14 +3,12 @@ package com.banking.banking_app.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.math.BigDecimal;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name= "accounts")
+@Table(name = "accounts")
 @Entity
 public class Account {
     @Id
@@ -20,8 +18,8 @@ public class Account {
     @Column(name = "account_holder_name", nullable = false)
     private String accountHolderName;
 
-    @Column(name = "account_balance")
-    private BigDecimal balance;
+    @Column(name = "balance", nullable = false, columnDefinition = "DOUBLE DEFAULT 0.0")
+    private Double balance = 0.0;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
