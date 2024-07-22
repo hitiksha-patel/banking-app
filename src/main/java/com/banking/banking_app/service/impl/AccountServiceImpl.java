@@ -42,39 +42,18 @@ public class AccountServiceImpl implements AccountService {
     @Transactional
     public AccountDto createAccount(AccountDto accountDto) {
         try {
-            System.out.println("Starting account creation for user ID: " + accountDto.getUserId());
-
-            // Find the user by ID
             User user = userRepository.findById(accountDto.getUserId())
                     .orElseThrow(() -> new UserNotFoundException("User not found with id: " + accountDto.getUserId()));
-
-            System.out.println("User found: " + user);
-
-            // Map the account DTO to an account entity
             Account account = AccountMapper.mapToAccount(accountDto, user);
-
-            System.out.println("Account mapped: " + account);
-
-            // Ensure balance is set before saving
             if (account.getBalance() == null) {
                 account.setBalance(0.0);
             }
-
-            // Log the account details before saving
-            System.out.println("Saving account with balance: " + account.getBalance());
-
-            // Save the account entity
             Account savedAccount = accountRepository.save(account);
-
-            System.out.println("Account saved: " + savedAccount);
-
-            // Map the saved account entity to an account DTO and return it
             return AccountMapper.mapToAccountDto(savedAccount);
         } catch (UserNotFoundException e) {
             System.out.println(e.getMessage());
             throw e; // Re-throw the exception to be handled by the controller
         } catch (Exception e) {
-            System.out.println("An error occurred while creating the account: " + e.getMessage());
             e.printStackTrace();
             throw new RuntimeException("An error occurred while creating the account", e); // Re-throw as a generic runtime exception
         }
@@ -95,9 +74,7 @@ public class AccountServiceImpl implements AccountService {
 
             existingAccount.setAccountHolderName(accountDto.getAccountHolderName());
 
-
             Account updatedAccount = accountRepository.save(existingAccount);
-            // Return mapped UserDto
             return AccountMapper.mapToAccountDto(updatedAccount);
 
         } catch (UserNotFoundException e) {
@@ -110,11 +87,27 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public AccountDto getAccountById(Long id) {
+    public List<AccountDto> getAccountsByUserId(Long userId) {
+        List<Account> accounts = accountRepository.findByUserId(userId);
+        return accounts.stream()
+                .map(AccountMapper::mapToAccountDto)
+                .collect(Collectors.toList());
+    }
 
-        Account account = accountRepository
-                .findById(id).orElseThrow(() -> new RuntimeException("Account does not exists"));
-        return AccountMapper.mapToAccountDto(account);
+    @Override
+    public AccountDto getAccountById(Long id) {
+        try {
+            User authenticatedUser = authUtil.getAuthenticatedUser();
+            Account account = accountRepository
+                    .findById(id).orElseThrow(() -> new RuntimeException("Account does not exists"));
+
+            if (!account.getUser().getId().equals(authenticatedUser.getId())) {
+                throw new RuntimeException("You do not have permission to update this account.");
+            }
+            return AccountMapper.mapToAccountDto(account);
+        } catch (RuntimeException e){
+            throw new RuntimeException("Something went wrong!");
+        }
     }
 
     @Override

@@ -9,6 +9,7 @@ import com.banking.banking_app.repository.UserRepository;
 import com.banking.banking_app.service.AccountService;
 import com.banking.banking_app.util.JwtUtil;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -65,6 +66,33 @@ public class AccountController {
     public ResponseEntity<AccountDto> updateAccount(@PathVariable Long id, @RequestBody AccountDto accountDto) {
         AccountDto updatedAccount = accountService.updateAccount(id, accountDto);
         return ResponseEntity.ok(updatedAccount);
+    }
+
+    @GetMapping("/my-accounts")
+    public ResponseEntity<List<AccountDto>> getMyAccounts(HttpServletRequest request){
+        try{
+            String authHeader = request.getHeader("Authorization");
+            if (authHeader != null && authHeader.startsWith("Bearer ")) {
+                String jwt = authHeader.substring(7);
+                String username = jwtUtil.extractUsername(jwt);
+
+                if (username != null && jwtUtil.validateToken(jwt, userRepository.findByUsername(username))){
+                User user = userRepository.findByUsername(username);
+                if (user == null){
+                    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+                }
+                List<AccountDto> accounts = accountService.getAccountsByUserId(user.getId());
+                return new ResponseEntity<>(accounts, HttpStatus.OK);
+                }
+                else {
+                    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+                }
+            }else {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+            }
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
 }
 

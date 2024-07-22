@@ -10,6 +10,8 @@ public interface AccountService {
 
     AccountDto updateAccount(Long id, AccountDto accountDto);
 
+    List<AccountDto> getAccountsByUserId(Long userId);
+
     AccountDto getAccountById(Long id);
 
     AccountDto deposit(Long id, double amount);
