@@ -1,22 +1,20 @@
 package com.banking.banking_app.service.impl;
 
 import com.banking.banking_app.dto.AccountDto;
-import com.banking.banking_app.dto.UserDto;
+import com.banking.banking_app.dto.DepositDto;
+import com.banking.banking_app.dto.WithdrawDto;
 import com.banking.banking_app.entity.Account;
 import com.banking.banking_app.entity.User;
 import com.banking.banking_app.exception.UserNotFoundException;
 import com.banking.banking_app.mapper.AccountMapper;
-import com.banking.banking_app.mapper.UserMapper;
 import com.banking.banking_app.repository.AccountRepository;
 import com.banking.banking_app.repository.UserRepository;
 import com.banking.banking_app.service.AccountService;
 import com.banking.banking_app.util.AuthUtil;
-import com.banking.banking_app.util.PasswordUtil;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -64,7 +62,6 @@ public class AccountServiceImpl implements AccountService {
     public AccountDto updateAccount(Long accountId, AccountDto accountDto) {
         try {
             User authenticatedUser = authUtil.getAuthenticatedUser();
-
             Account existingAccount = accountRepository.findById(accountId)
                     .orElseThrow(() -> new UserNotFoundException("Account not found with id " + accountId));
 
@@ -94,61 +91,30 @@ public class AccountServiceImpl implements AccountService {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public AccountDto getAccountById(Long id) {
-        try {
-            User authenticatedUser = authUtil.getAuthenticatedUser();
-            Account account = accountRepository
-                    .findById(id).orElseThrow(() -> new RuntimeException("Account does not exists"));
 
-            if (!account.getUser().getId().equals(authenticatedUser.getId())) {
-                throw new RuntimeException("You do not have permission to update this account.");
-            }
-            return AccountMapper.mapToAccountDto(account);
-        } catch (RuntimeException e){
-            throw new RuntimeException("Something went wrong!");
+    @Override
+    public AccountDto deposit(DepositDto depositDto) {
+        Account account = accountRepository.findById(depositDto.getAccountId())
+                .orElseThrow(() -> new RuntimeException("Account not found"));
+
+        account.setBalance(account.getBalance() + depositDto.getAmount());
+        Account updatedAccount = accountRepository.save(account);
+
+        return AccountMapper.mapToAccountDto(updatedAccount);
+    }
+
+    @Override
+    public AccountDto withdraw(WithdrawDto withdrawDto) {
+        Account account = accountRepository.findById(withdrawDto.getAccountId())
+                .orElseThrow(() -> new RuntimeException("Account not found"));
+
+        if (account.getBalance() < withdrawDto.getAmount()) {
+            throw new RuntimeException("Insufficient funds");
         }
+
+        account.setBalance(account.getBalance() - withdrawDto.getAmount());
+        Account updatedAccount = accountRepository.save(account);
+
+        return AccountMapper.mapToAccountDto(updatedAccount);
     }
-
-    @Override
-    public AccountDto deposit(Long id, double amount) {
-        Account account = accountRepository
-                .findById(id).orElseThrow(() -> new RuntimeException("Account does not exists"));
-        Double total = account.getBalance() + (Double.valueOf(amount));
-        account.setBalance(total);
-        Account savedAccount = accountRepository.save(account);
-        return AccountMapper.mapToAccountDto(savedAccount);
-    }
-
-    @Override
-    public AccountDto withdraw(Long id, double amount) {
-        Account account = accountRepository
-                .findById(id).orElseThrow(() -> new RuntimeException("Account does not exists"));
-
-        if(account.getBalance().compareTo(Double.valueOf(amount)) < 0){
-            throw new RuntimeException("Insufficient amount");
-        }
-        Double total = account.getBalance() - (Double.valueOf(amount));
-        account.setBalance(total);
-        Account savedAccount = accountRepository.save(account);
-        return AccountMapper.mapToAccountDto(savedAccount);
-    }
-
-    @Override
-    public List<AccountDto> getAllAccounts() {
-
-        List<Account> accounts = accountRepository.findAll();
-        return accounts.stream().map(AccountMapper::mapToAccountDto)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public void deleteAccount(Long id) {
-        Account account = accountRepository
-                .findById(id).orElseThrow(() -> new RuntimeException("Account does not exists"));
-
-        accountRepository.deleteById(id);
-    }
-
-
 }
