@@ -117,4 +117,19 @@ public class AccountServiceImpl implements AccountService {
 
         return AccountMapper.mapToAccountDto(updatedAccount);
     }
+
+    @Override
+    public boolean deleteAccountIfZeroBalance(Long accountId, Long userId) {
+        Account account = accountRepository.findById(accountId)
+                .orElseThrow(() -> new RuntimeException("Account not found"));
+        if (!account.getUser().getId().equals(userId)){
+            throw new RuntimeException("Unauthorized access to the account");
+        }
+
+        if (account.getBalance() == 0){
+            accountRepository.delete(account);
+            return true;
+        }
+        return false;
+    }
 }

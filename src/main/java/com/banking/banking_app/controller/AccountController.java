@@ -91,5 +91,23 @@ public class AccountController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+
+    @DeleteMapping("/{accountId}")
+    public ResponseEntity<String> deleteAccount(@PathVariable Long accountId){
+        try{
+            User user = authUtil.getAuthenticatedUser();
+            boolean isDeleted = accountService.deleteAccountIfZeroBalance(accountId, user.getId());
+            if (isDeleted){
+                return new ResponseEntity<>("Account deleted successfully", HttpStatus.OK);
+            }
+            else {
+                return new ResponseEntity<>("Account balance is not zero. Please withdraw all funds before deleting the account.", HttpStatus.BAD_REQUEST);
+            }
+        } catch (RuntimeException e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
 }
 

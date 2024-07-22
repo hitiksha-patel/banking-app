@@ -9,12 +9,10 @@ import java.util.List;
 public interface AccountService {
 
     AccountDto createAccount(AccountDto accountDto);
-
     AccountDto updateAccount(Long id, AccountDto accountDto);
-
     List<AccountDto> getAccountsByUserId(Long userId);
-
     AccountDto deposit(DepositDto depositDto);
     AccountDto withdraw(WithdrawDto withdrawDto);
+    boolean deleteAccountIfZeroBalance(Long accountId, Long userId);
 
 }
