@@ -1,5 +1,6 @@
 package com.banking.banking_app.dto;
 
+import com.banking.banking_app.entity.AccountType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,4 +18,5 @@ public class AccountDto {
     private String accountHolderName;
     private Double balance;
     private Long userId;
+    private AccountType accountType;
 }

@@ -23,6 +23,10 @@ public class Account {
     @Column(name = "balance", nullable = false, columnDefinition = "DOUBLE DEFAULT 0.0")
     private Double balance = 0.0;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "acc_type", nullable = false)
+    private AccountType accountType = AccountType.SAVING;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;

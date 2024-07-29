@@ -70,6 +70,7 @@ public class AccountServiceImpl implements AccountService {
             }
 
             existingAccount.setAccountHolderName(accountDto.getAccountHolderName());
+            existingAccount.setAccountType(accountDto.getAccountType());
 
             Account updatedAccount = accountRepository.save(existingAccount);
             return AccountMapper.mapToAccountDto(updatedAccount);
