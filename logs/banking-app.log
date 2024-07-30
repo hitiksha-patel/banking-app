@@ -1,0 +1,7 @@
+2024-07-30 17:22:14 - Starting BankingAppApplication using Java 22.0.1 with PID 6376 (C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app\target\classes started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-07-30 17:22:14 - No active profile set, falling back to 1 default profile: "default"
+2024-07-30 17:22:17 - Started BankingAppApplication in 4.308 seconds (process running for 4.672)
+2024-07-30 17:22:20 - Depositing amount: 50.0 to account: 5
+2024-07-30 17:22:20 - Deposit successful for account: 5
+2024-07-30 17:22:44 - Depositing amount: 70.0 to account: 5
+2024-07-30 17:22:44 - Deposit successful for account: 5
