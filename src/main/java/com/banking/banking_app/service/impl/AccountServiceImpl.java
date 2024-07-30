@@ -12,6 +12,8 @@ import com.banking.banking_app.repository.UserRepository;
 import com.banking.banking_app.service.AccountService;
 import com.banking.banking_app.util.AuthUtil;
 import jakarta.transaction.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class AccountServiceImpl implements AccountService {
+
+    private static final Logger logger = LoggerFactory.getLogger(AccountServiceImpl.class);
 
     @Autowired
     private AccountRepository accountRepository;
@@ -95,11 +99,13 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public AccountDto deposit(DepositDto depositDto) {
+        logger.info("Depositing amount: {} to account: {}", depositDto.getAmount(), depositDto.getAccountId());
         Account account = accountRepository.findById(depositDto.getAccountId())
                 .orElseThrow(() -> new RuntimeException("Account not found"));
 
         account.setBalance(account.getBalance() + depositDto.getAmount());
         Account updatedAccount = accountRepository.save(account);
+        logger.info("Deposit successful for account: {}", account.getId());
 
         return AccountMapper.mapToAccountDto(updatedAccount);
     }
