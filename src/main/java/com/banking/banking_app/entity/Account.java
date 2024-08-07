@@ -31,6 +31,9 @@ public class Account {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @Column(name = "account_number", unique = true, nullable = false, length = 12)
+    private String accountNumber;
+
     @Column(name = "created_date", updatable = false)
     private LocalDateTime createdDate;
 

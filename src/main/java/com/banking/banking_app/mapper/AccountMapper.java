@@ -12,6 +12,7 @@ public class AccountMapper {
                 .id(account.getId())
                 .accountHolderName(account.getAccountHolderName())
                 .balance(account.getBalance())
+                .accountNumber(account.getAccountNumber())
                 .accountType(account.getAccountType())
                 .userId(account.getUser().getId())
                 .build();
@@ -22,6 +23,7 @@ public class AccountMapper {
                 .id(accountDto.getId())
                 .accountHolderName(accountDto.getAccountHolderName())
                 .balance(accountDto.getBalance())
+                .accountNumber(accountDto.getAccountNumber())
                 .accountType(accountDto.getAccountType() != null ? accountDto.getAccountType() : AccountType.SAVING)
                 .build();
         User user = new User();
@@ -35,6 +37,7 @@ public class AccountMapper {
                 .id(accountDto.getId())
                 .accountHolderName(accountDto.getAccountHolderName())
                 .balance(accountDto.getBalance())
+                .accountNumber(accountDto.getAccountNumber())
                 .accountType(accountDto.getAccountType() != null ? accountDto.getAccountType() : AccountType.SAVING)
                 .user(user)
                 .build();

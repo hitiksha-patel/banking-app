@@ -1,7 +1,139 @@
-2024-07-30 17:22:14 - Starting BankingAppApplication using Java 22.0.1 with PID 6376 (C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app\target\classes started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
-2024-07-30 17:22:14 - No active profile set, falling back to 1 default profile: "default"
-2024-07-30 17:22:17 - Started BankingAppApplication in 4.308 seconds (process running for 4.672)
-2024-07-30 17:22:20 - Depositing amount: 50.0 to account: 5
-2024-07-30 17:22:20 - Deposit successful for account: 5
-2024-07-30 17:22:44 - Depositing amount: 70.0 to account: 5
-2024-07-30 17:22:44 - Deposit successful for account: 5
+2024-08-06 17:40:33 - Starting BankingAppApplicationTests using Java 21.0.3 with PID 11336 (started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-08-06 17:40:33 - No active profile set, falling back to 1 default profile: "default"
+2024-08-06 17:40:38 - Started BankingAppApplicationTests in 4.54 seconds (process running for 5.497)
+2024-08-06 17:42:25 - Starting BankingAppApplication using Java 22.0.1 with PID 18852 (C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app\target\classes started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-08-06 17:42:25 - No active profile set, falling back to 1 default profile: "default"
+2024-08-06 17:42:29 - Started BankingAppApplication in 4.325 seconds (process running for 4.732)
+2024-08-06 17:42:38 - Starting BankingAppApplication using Java 22.0.1 with PID 5636 (C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app\target\classes started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-08-06 17:42:38 - No active profile set, falling back to 1 default profile: "default"
+2024-08-06 17:42:42 - Started BankingAppApplication in 4.171 seconds (process running for 4.579)
+2024-08-06 21:31:50 - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+io.jsonwebtoken.ExpiredJwtException: JWT expired at 2024-07-31T03:06:12Z. Current time: 2024-08-06T21:31:50Z, a difference of 584738681 milliseconds.  Allowed clock skew: 0 milliseconds.
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:385)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:481)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parseClaimsJws(DefaultJwtParser.java:541)
+	at com.banking.banking_app.util.JwtUtil.extractAllClaims(JwtUtil.java:35)
+	at com.banking.banking_app.util.JwtUtil.extractClaim(JwtUtil.java:30)
+	at com.banking.banking_app.util.JwtUtil.extractUsername(JwtUtil.java:22)
+	at com.banking.banking_app.filter.JwtRequestFilter.doFilterInternal(JwtRequestFilter.java:40)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2024-08-06 21:37:28 - Starting BankingAppApplication using Java 22.0.1 with PID 18304 (C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app\target\classes started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-08-06 21:37:28 - No active profile set, falling back to 1 default profile: "default"
+2024-08-06 21:37:32 - Started BankingAppApplication in 4.606 seconds (process running for 5.018)
+2024-08-06 21:37:40 - Data truncation: Data too long for column 'account_number' at row 1
+2024-08-06 21:40:24 - Starting BankingAppApplication using Java 22.0.1 with PID 15616 (C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app\target\classes started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-08-06 21:40:24 - No active profile set, falling back to 1 default profile: "default"
+2024-08-06 21:40:28 - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.banking.banking_app.controller.UserController required a bean of type 'com.banking.banking_app.service.UserService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.banking.banking_app.service.UserService' in your configuration.
+
+2024-08-06 21:40:49 - Starting BankingAppApplication using Java 22.0.1 with PID 19524 (C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app\target\classes started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-08-06 21:40:49 - No active profile set, falling back to 1 default profile: "default"
+2024-08-06 21:40:52 - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.banking.banking_app.controller.UserController required a bean of type 'com.banking.banking_app.service.UserService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.banking.banking_app.service.UserService' in your configuration.
+
+2024-08-06 21:41:05 - Starting BankingAppApplication using Java 22.0.1 with PID 9844 (C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app\target\classes started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-08-06 21:41:05 - No active profile set, falling back to 1 default profile: "default"
+2024-08-06 21:41:09 - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.banking.banking_app.controller.UserController required a bean of type 'com.banking.banking_app.service.UserService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.banking.banking_app.service.UserService' in your configuration.
+
+2024-08-06 21:41:20 - Starting BankingAppApplicationTests using Java 21.0.3 with PID 14064 (started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-08-06 21:41:20 - No active profile set, falling back to 1 default profile: "default"
+2024-08-06 21:41:23 - Started BankingAppApplicationTests in 4.119 seconds (process running for 5.249)
+2024-08-06 21:41:29 - Starting BankingAppApplication using Java 22.0.1 with PID 36428 (C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app\target\classes started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-08-06 21:41:29 - No active profile set, falling back to 1 default profile: "default"
+2024-08-06 21:41:33 - Started BankingAppApplication in 4.218 seconds (process running for 4.588)

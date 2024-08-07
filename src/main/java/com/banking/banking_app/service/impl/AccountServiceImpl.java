@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 @Service
@@ -40,6 +41,15 @@ public class AccountServiceImpl implements AccountService {
         this.userRepository = userRepository;
     }
 
+    public String generateUniqueAccountNumber() {
+        Random random = new Random();
+        String accountNumber;
+        do {
+            accountNumber = "3021" + String.format("%08d", random.nextInt(100000000));
+        } while (accountRepository.existsByAccountNumber(accountNumber));
+        return accountNumber;
+    }
+
     @Override
     @Transactional
     public AccountDto createAccount(AccountDto accountDto) {
@@ -50,6 +60,7 @@ public class AccountServiceImpl implements AccountService {
             if (account.getBalance() == null) {
                 account.setBalance(0.0);
             }
+            account.setAccountNumber(generateUniqueAccountNumber());
             Account savedAccount = accountRepository.save(account);
             return AccountMapper.mapToAccountDto(savedAccount);
         } catch (UserNotFoundException e) {
