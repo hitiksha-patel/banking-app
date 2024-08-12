@@ -13,6 +13,7 @@ import com.banking.banking_app.service.UserService;
 import com.banking.banking_app.util.JwtUtil;
 import com.banking.banking_app.util.PasswordUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -116,13 +117,17 @@ public class UserServiceImple implements UserService {
     }
 
     @Override
+    @Cacheable(value = "users", key = "#username")
     public UserDto getUserByUsername(String username) {
+        System.out.println("Fetching user from DB for username: " + username);
         try {
             User user = userRepository.findByUsername(username);
             if (user == null) {
                 throw new UserNotFoundException("User not found with username: " + username);
             }
-            return UserMapper.mapToUserDto(user);
+            UserDto userDto = UserMapper.mapToUserDto(user);
+            System.out.println("Retrieved UserDto: " + userDto);
+            return userDto;
         } catch (UserNotFoundException e) {
             System.out.println(e.getMessage());
             throw e; // Re-throw the exception to be handled by the controller

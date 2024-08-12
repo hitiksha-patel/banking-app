@@ -1,14 +1,35 @@
-2024-08-06 17:40:33 - Starting BankingAppApplicationTests using Java 21.0.3 with PID 11336 (started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
-2024-08-06 17:40:33 - No active profile set, falling back to 1 default profile: "default"
-2024-08-06 17:40:38 - Started BankingAppApplicationTests in 4.54 seconds (process running for 5.497)
-2024-08-06 17:42:25 - Starting BankingAppApplication using Java 22.0.1 with PID 18852 (C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app\target\classes started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
-2024-08-06 17:42:25 - No active profile set, falling back to 1 default profile: "default"
-2024-08-06 17:42:29 - Started BankingAppApplication in 4.325 seconds (process running for 4.732)
-2024-08-06 17:42:38 - Starting BankingAppApplication using Java 22.0.1 with PID 5636 (C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app\target\classes started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
-2024-08-06 17:42:38 - No active profile set, falling back to 1 default profile: "default"
-2024-08-06 17:42:42 - Started BankingAppApplication in 4.171 seconds (process running for 4.579)
-2024-08-06 21:31:50 - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
-io.jsonwebtoken.ExpiredJwtException: JWT expired at 2024-07-31T03:06:12Z. Current time: 2024-08-06T21:31:50Z, a difference of 584738681 milliseconds.  Allowed clock skew: 0 milliseconds.
+2024-08-12 13:33:36 - Stopped RedisMessageListenerContainer
+2024-08-12 15:58:56 - Starting BankingAppApplicationTests using Java 21.0.3 with PID 12328 (started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-08-12 15:58:56 - No active profile set, falling back to 1 default profile: "default"
+2024-08-12 15:59:00 - Started BankingAppApplicationTests in 4.559 seconds (process running for 5.638)
+2024-08-12 16:01:42 - Starting BankingAppApplicationTests using Java 21.0.3 with PID 39908 (started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-08-12 16:01:42 - No active profile set, falling back to 1 default profile: "default"
+2024-08-12 16:01:46 - Started BankingAppApplicationTests in 4.177 seconds (process running for 5.058)
+2024-08-12 16:04:55 - Starting BankingAppApplicationTests using Java 21.0.3 with PID 23728 (started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-08-12 16:04:55 - No active profile set, falling back to 1 default profile: "default"
+2024-08-12 16:04:59 - Starting RedisMessageListenerContainer...
+2024-08-12 16:04:59 - Postpone listening for Redis messages until actual listeners are added
+2024-08-12 16:04:59 - Started BankingAppApplicationTests in 4.621 seconds (process running for 5.483)
+2024-08-12 16:05:00 - Stopped RedisMessageListenerContainer
+2024-08-12 16:12:00 - Starting BankingAppApplicationTests using Java 21.0.3 with PID 29760 (started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-08-12 16:12:00 - No active profile set, falling back to 1 default profile: "default"
+2024-08-12 16:12:04 - Starting RedisMessageListenerContainer...
+2024-08-12 16:12:04 - Postpone listening for Redis messages until actual listeners are added
+2024-08-12 16:12:04 - Started BankingAppApplicationTests in 4.706 seconds (process running for 5.615)
+2024-08-12 16:12:05 - Stopped RedisMessageListenerContainer
+2024-08-12 16:23:39 - Starting BankingAppApplication using Java 22.0.1 with PID 31452 (C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app\target\classes started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-08-12 16:23:39 - No active profile set, falling back to 1 default profile: "default"
+2024-08-12 16:23:43 - Starting RedisMessageListenerContainer...
+2024-08-12 16:23:43 - Postpone listening for Redis messages until actual listeners are added
+2024-08-12 16:23:43 - Started BankingAppApplication in 5.233 seconds (process running for 5.664)
+2024-08-12 16:23:48 - Stopped RedisMessageListenerContainer
+2024-08-12 16:23:50 - Starting BankingAppApplication using Java 22.0.1 with PID 14008 (C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app\target\classes started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-08-12 16:23:50 - No active profile set, falling back to 1 default profile: "default"
+2024-08-12 16:23:55 - Starting RedisMessageListenerContainer...
+2024-08-12 16:23:55 - Postpone listening for Redis messages until actual listeners are added
+2024-08-12 16:23:55 - Started BankingAppApplication in 5.293 seconds (process running for 5.767)
+2024-08-12 16:24:01 - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+io.jsonwebtoken.ExpiredJwtException: JWT expired at 2024-08-08T01:31:30Z. Current time: 2024-08-12T16:24:01Z, a difference of 399151793 milliseconds.  Allowed clock skew: 0 milliseconds.
 	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:385)
 	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:481)
 	at io.jsonwebtoken.impl.DefaultJwtParser.parseClaimsJws(DefaultJwtParser.java:541)
@@ -76,64 +97,39 @@ io.jsonwebtoken.ExpiredJwtException: JWT expired at 2024-07-31T03:06:12Z. Curren
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
 	at java.base/java.lang.Thread.run(Thread.java:1570)
-2024-08-06 21:37:28 - Starting BankingAppApplication using Java 22.0.1 with PID 18304 (C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app\target\classes started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
-2024-08-06 21:37:28 - No active profile set, falling back to 1 default profile: "default"
-2024-08-06 21:37:32 - Started BankingAppApplication in 4.606 seconds (process running for 5.018)
-2024-08-06 21:37:40 - Data truncation: Data too long for column 'account_number' at row 1
-2024-08-06 21:40:24 - Starting BankingAppApplication using Java 22.0.1 with PID 15616 (C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app\target\classes started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
-2024-08-06 21:40:24 - No active profile set, falling back to 1 default profile: "default"
-2024-08-06 21:40:28 - 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Parameter 0 of constructor in com.banking.banking_app.controller.UserController required a bean of type 'com.banking.banking_app.service.UserService' that could not be found.
-
-
-Action:
-
-Consider defining a bean of type 'com.banking.banking_app.service.UserService' in your configuration.
-
-2024-08-06 21:40:49 - Starting BankingAppApplication using Java 22.0.1 with PID 19524 (C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app\target\classes started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
-2024-08-06 21:40:49 - No active profile set, falling back to 1 default profile: "default"
-2024-08-06 21:40:52 - 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Parameter 0 of constructor in com.banking.banking_app.controller.UserController required a bean of type 'com.banking.banking_app.service.UserService' that could not be found.
-
-
-Action:
-
-Consider defining a bean of type 'com.banking.banking_app.service.UserService' in your configuration.
-
-2024-08-06 21:41:05 - Starting BankingAppApplication using Java 22.0.1 with PID 9844 (C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app\target\classes started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
-2024-08-06 21:41:05 - No active profile set, falling back to 1 default profile: "default"
-2024-08-06 21:41:09 - 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Parameter 0 of constructor in com.banking.banking_app.controller.UserController required a bean of type 'com.banking.banking_app.service.UserService' that could not be found.
-
-
-Action:
-
-Consider defining a bean of type 'com.banking.banking_app.service.UserService' in your configuration.
-
-2024-08-06 21:41:20 - Starting BankingAppApplicationTests using Java 21.0.3 with PID 14064 (started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
-2024-08-06 21:41:20 - No active profile set, falling back to 1 default profile: "default"
-2024-08-06 21:41:23 - Started BankingAppApplicationTests in 4.119 seconds (process running for 5.249)
-2024-08-06 21:41:29 - Starting BankingAppApplication using Java 22.0.1 with PID 36428 (C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app\target\classes started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
-2024-08-06 21:41:29 - No active profile set, falling back to 1 default profile: "default"
-2024-08-06 21:41:33 - Started BankingAppApplication in 4.218 seconds (process running for 4.588)
+2024-08-12 16:26:51 - Stopped RedisMessageListenerContainer
+2024-08-12 16:26:55 - Starting BankingAppApplication using Java 22.0.1 with PID 22392 (C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app\target\classes started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-08-12 16:26:55 - No active profile set, falling back to 1 default profile: "default"
+2024-08-12 16:27:00 - Starting RedisMessageListenerContainer...
+2024-08-12 16:27:00 - Postpone listening for Redis messages until actual listeners are added
+2024-08-12 16:27:00 - Started BankingAppApplication in 5.413 seconds (process running for 5.826)
+2024-08-12 16:27:39 - Stopped RedisMessageListenerContainer
+2024-08-12 16:27:42 - Starting BankingAppApplication using Java 22.0.1 with PID 30764 (C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app\target\classes started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-08-12 16:27:42 - No active profile set, falling back to 1 default profile: "default"
+2024-08-12 16:27:46 - Starting RedisMessageListenerContainer...
+2024-08-12 16:27:46 - Postpone listening for Redis messages until actual listeners are added
+2024-08-12 16:27:47 - Started BankingAppApplication in 4.964 seconds (process running for 5.437)
+2024-08-12 16:34:05 - Stopped RedisMessageListenerContainer
+2024-08-12 16:34:08 - Starting BankingAppApplication using Java 22.0.1 with PID 25916 (C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app\target\classes started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-08-12 16:34:08 - No active profile set, falling back to 1 default profile: "default"
+2024-08-12 16:34:13 - Starting RedisMessageListenerContainer...
+2024-08-12 16:34:13 - Postpone listening for Redis messages until actual listeners are added
+2024-08-12 16:34:13 - Started BankingAppApplication in 5.272 seconds (process running for 5.76)
+2024-08-12 16:50:35 - Stopped RedisMessageListenerContainer
+2024-08-12 16:50:39 - Starting BankingAppApplication using Java 22.0.1 with PID 36380 (C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app\target\classes started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-08-12 16:50:39 - No active profile set, falling back to 1 default profile: "default"
+2024-08-12 16:50:44 - Starting RedisMessageListenerContainer...
+2024-08-12 16:50:44 - Postpone listening for Redis messages until actual listeners are added
+2024-08-12 16:50:44 - Started BankingAppApplication in 5.215 seconds (process running for 5.687)
+2024-08-12 16:57:36 - Stopped RedisMessageListenerContainer
+2024-08-12 16:57:38 - Starting BankingAppApplication using Java 22.0.1 with PID 21088 (C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app\target\classes started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-08-12 16:57:38 - No active profile set, falling back to 1 default profile: "default"
+2024-08-12 16:57:43 - Starting RedisMessageListenerContainer...
+2024-08-12 16:57:43 - Postpone listening for Redis messages until actual listeners are added
+2024-08-12 16:57:43 - Started BankingAppApplication in 5.537 seconds (process running for 5.95)
+2024-08-12 17:04:34 - Stopped RedisMessageListenerContainer
+2024-08-12 17:04:36 - Starting BankingAppApplication using Java 22.0.1 with PID 8656 (C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app\target\classes started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-08-12 17:04:36 - No active profile set, falling back to 1 default profile: "default"
+2024-08-12 17:04:41 - Starting RedisMessageListenerContainer...
+2024-08-12 17:04:41 - Postpone listening for Redis messages until actual listeners are added
+2024-08-12 17:04:41 - Started BankingAppApplication in 4.954 seconds (process running for 5.331)
