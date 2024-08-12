@@ -6,13 +6,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AccountDto {
+public class AccountDto implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private Long id;
     private String accountHolderName;
