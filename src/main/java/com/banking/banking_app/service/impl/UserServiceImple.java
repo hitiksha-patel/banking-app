@@ -61,7 +61,7 @@ public class UserServiceImple implements UserService {
 
 
     @Override
-    public UserDto login(LoginDto loginDto) {
+    public LoginDto login(LoginDto loginDto) {
         try {
             User user = userRepository.findByUsername(loginDto.getUsername());
             if (user == null) {
@@ -70,9 +70,7 @@ public class UserServiceImple implements UserService {
 
             if (PasswordUtil.checkPassword(loginDto.getPassword(), user.getPassword())) {
                 String token = jwtUtil.generateToken(user);
-                UserDto userDto = UserMapper.mapToUserDto(user);
-                userDto.setToken(token); // Include the token in the UserDto
-                return userDto;
+                return new LoginDto(user.getUsername(), user.getEmail(), token);
             } else {
                 throw new InvalidPasswordException("Invalid Password for username: " + loginDto.getUsername());
             }

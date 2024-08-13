@@ -1,0 +1,135 @@
+2024-08-12 13:33:36 - Stopped RedisMessageListenerContainer
+2024-08-12 15:58:56 - Starting BankingAppApplicationTests using Java 21.0.3 with PID 12328 (started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-08-12 15:58:56 - No active profile set, falling back to 1 default profile: "default"
+2024-08-12 15:59:00 - Started BankingAppApplicationTests in 4.559 seconds (process running for 5.638)
+2024-08-12 16:01:42 - Starting BankingAppApplicationTests using Java 21.0.3 with PID 39908 (started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-08-12 16:01:42 - No active profile set, falling back to 1 default profile: "default"
+2024-08-12 16:01:46 - Started BankingAppApplicationTests in 4.177 seconds (process running for 5.058)
+2024-08-12 16:04:55 - Starting BankingAppApplicationTests using Java 21.0.3 with PID 23728 (started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-08-12 16:04:55 - No active profile set, falling back to 1 default profile: "default"
+2024-08-12 16:04:59 - Starting RedisMessageListenerContainer...
+2024-08-12 16:04:59 - Postpone listening for Redis messages until actual listeners are added
+2024-08-12 16:04:59 - Started BankingAppApplicationTests in 4.621 seconds (process running for 5.483)
+2024-08-12 16:05:00 - Stopped RedisMessageListenerContainer
+2024-08-12 16:12:00 - Starting BankingAppApplicationTests using Java 21.0.3 with PID 29760 (started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-08-12 16:12:00 - No active profile set, falling back to 1 default profile: "default"
+2024-08-12 16:12:04 - Starting RedisMessageListenerContainer...
+2024-08-12 16:12:04 - Postpone listening for Redis messages until actual listeners are added
+2024-08-12 16:12:04 - Started BankingAppApplicationTests in 4.706 seconds (process running for 5.615)
+2024-08-12 16:12:05 - Stopped RedisMessageListenerContainer
+2024-08-12 16:23:39 - Starting BankingAppApplication using Java 22.0.1 with PID 31452 (C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app\target\classes started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-08-12 16:23:39 - No active profile set, falling back to 1 default profile: "default"
+2024-08-12 16:23:43 - Starting RedisMessageListenerContainer...
+2024-08-12 16:23:43 - Postpone listening for Redis messages until actual listeners are added
+2024-08-12 16:23:43 - Started BankingAppApplication in 5.233 seconds (process running for 5.664)
+2024-08-12 16:23:48 - Stopped RedisMessageListenerContainer
+2024-08-12 16:23:50 - Starting BankingAppApplication using Java 22.0.1 with PID 14008 (C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app\target\classes started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-08-12 16:23:50 - No active profile set, falling back to 1 default profile: "default"
+2024-08-12 16:23:55 - Starting RedisMessageListenerContainer...
+2024-08-12 16:23:55 - Postpone listening for Redis messages until actual listeners are added
+2024-08-12 16:23:55 - Started BankingAppApplication in 5.293 seconds (process running for 5.767)
+2024-08-12 16:24:01 - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+io.jsonwebtoken.ExpiredJwtException: JWT expired at 2024-08-08T01:31:30Z. Current time: 2024-08-12T16:24:01Z, a difference of 399151793 milliseconds.  Allowed clock skew: 0 milliseconds.
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:385)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parse(DefaultJwtParser.java:481)
+	at io.jsonwebtoken.impl.DefaultJwtParser.parseClaimsJws(DefaultJwtParser.java:541)
+	at com.banking.banking_app.util.JwtUtil.extractAllClaims(JwtUtil.java:35)
+	at com.banking.banking_app.util.JwtUtil.extractClaim(JwtUtil.java:30)
+	at com.banking.banking_app.util.JwtUtil.extractUsername(JwtUtil.java:22)
+	at com.banking.banking_app.filter.JwtRequestFilter.doFilterInternal(JwtRequestFilter.java:40)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:389)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2024-08-12 16:26:51 - Stopped RedisMessageListenerContainer
+2024-08-12 16:26:55 - Starting BankingAppApplication using Java 22.0.1 with PID 22392 (C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app\target\classes started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-08-12 16:26:55 - No active profile set, falling back to 1 default profile: "default"
+2024-08-12 16:27:00 - Starting RedisMessageListenerContainer...
+2024-08-12 16:27:00 - Postpone listening for Redis messages until actual listeners are added
+2024-08-12 16:27:00 - Started BankingAppApplication in 5.413 seconds (process running for 5.826)
+2024-08-12 16:27:39 - Stopped RedisMessageListenerContainer
+2024-08-12 16:27:42 - Starting BankingAppApplication using Java 22.0.1 with PID 30764 (C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app\target\classes started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-08-12 16:27:42 - No active profile set, falling back to 1 default profile: "default"
+2024-08-12 16:27:46 - Starting RedisMessageListenerContainer...
+2024-08-12 16:27:46 - Postpone listening for Redis messages until actual listeners are added
+2024-08-12 16:27:47 - Started BankingAppApplication in 4.964 seconds (process running for 5.437)
+2024-08-12 16:34:05 - Stopped RedisMessageListenerContainer
+2024-08-12 16:34:08 - Starting BankingAppApplication using Java 22.0.1 with PID 25916 (C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app\target\classes started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-08-12 16:34:08 - No active profile set, falling back to 1 default profile: "default"
+2024-08-12 16:34:13 - Starting RedisMessageListenerContainer...
+2024-08-12 16:34:13 - Postpone listening for Redis messages until actual listeners are added
+2024-08-12 16:34:13 - Started BankingAppApplication in 5.272 seconds (process running for 5.76)
+2024-08-12 16:50:35 - Stopped RedisMessageListenerContainer
+2024-08-12 16:50:39 - Starting BankingAppApplication using Java 22.0.1 with PID 36380 (C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app\target\classes started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-08-12 16:50:39 - No active profile set, falling back to 1 default profile: "default"
+2024-08-12 16:50:44 - Starting RedisMessageListenerContainer...
+2024-08-12 16:50:44 - Postpone listening for Redis messages until actual listeners are added
+2024-08-12 16:50:44 - Started BankingAppApplication in 5.215 seconds (process running for 5.687)
+2024-08-12 16:57:36 - Stopped RedisMessageListenerContainer
+2024-08-12 16:57:38 - Starting BankingAppApplication using Java 22.0.1 with PID 21088 (C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app\target\classes started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-08-12 16:57:38 - No active profile set, falling back to 1 default profile: "default"
+2024-08-12 16:57:43 - Starting RedisMessageListenerContainer...
+2024-08-12 16:57:43 - Postpone listening for Redis messages until actual listeners are added
+2024-08-12 16:57:43 - Started BankingAppApplication in 5.537 seconds (process running for 5.95)
+2024-08-12 17:04:34 - Stopped RedisMessageListenerContainer
+2024-08-12 17:04:36 - Starting BankingAppApplication using Java 22.0.1 with PID 8656 (C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app\target\classes started by hitik in C:\Users\hitik\Documents\Programming\Java\banking-app\banking-app)
+2024-08-12 17:04:36 - No active profile set, falling back to 1 default profile: "default"
+2024-08-12 17:04:41 - Starting RedisMessageListenerContainer...
+2024-08-12 17:04:41 - Postpone listening for Redis messages until actual listeners are added
+2024-08-12 17:04:41 - Started BankingAppApplication in 4.954 seconds (process running for 5.331)

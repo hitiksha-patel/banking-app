@@ -39,9 +39,9 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginDto loginDto) {
-        UserDto userDto = userService.login(loginDto);
-        if (userDto != null) {
-            return ResponseEntity.ok(userDto);
+        LoginDto responseDto = userService.login(loginDto);
+        if (responseDto != null) {
+            return ResponseEntity.ok(responseDto);
         } else {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid username or password");
         }

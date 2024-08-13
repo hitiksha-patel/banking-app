@@ -6,7 +6,7 @@ import com.banking.banking_app.dto.UserDto;
 public interface UserService {
 
     UserDto registerUser(UserDto userDto);
-    UserDto login(LoginDto loginDto);
+    LoginDto login(LoginDto loginDto);
     UserDto updateUser(Long userId, UserDto userDto);
     UserDto getUserByUsername(String username);
 }
