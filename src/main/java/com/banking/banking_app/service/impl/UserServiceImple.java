@@ -15,15 +15,11 @@ import com.banking.banking_app.util.JwtUtil;
 import com.banking.banking_app.util.PasswordUtil;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.UUID;
 
 @Service
 public class UserServiceImple implements UserService {
@@ -36,6 +32,12 @@ public class UserServiceImple implements UserService {
 
     @Autowired
     private JwtUtil jwtUtil;
+
+    @Autowired
+    private FileStorageService fileStorageService;
+
+    @Value("${user.profile-pic.upload-dir}")
+    private String documentUploadDir;
 
 
     @Autowired
@@ -100,6 +102,12 @@ public class UserServiceImple implements UserService {
         User existingUser = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException("User not found with id " + userId));
 
+        updateUserDetails(existingUser, userDto);
+
+        return UserMapper.mapToUserDto(userRepository.save(existingUser));
+    }
+
+    private void updateUserDetails(User existingUser, UserDto userDto) {
         existingUser.setFirstname(userDto.getFirstname());
         existingUser.setLastname(userDto.getLastname());
         existingUser.setPhone(userDto.getPhone());
@@ -114,33 +122,16 @@ public class UserServiceImple implements UserService {
             existingUser.setRole(userDto.getRole());
         }
 
-        // Handle profile picture saving
         if (userDto.getProfilePicFile() != null && !userDto.getProfilePicFile().isEmpty()) {
-            String profilePicPath = saveProfilePicture(userDto.getProfilePicFile(), existingUser);
+            String profilePicPath = saveProfilePicture(userDto.getProfilePicFile());
             existingUser.setProfilePic(profilePicPath);
         }
-
-        // Handle document saving
-        if (userDto.getDocument() != null && !userDto.getDocument().isEmpty()) {
-            documentService.saveDocument(userDto.getDocument(), existingUser);
-        }
-
-        User updatedUser = userRepository.save(existingUser);
-
-        return UserMapper.mapToUserDto(updatedUser);
     }
 
-    private static final String DOCUMENT_UPLOAD_DIR = "src/main/resources/user_documents/";
-    private String saveProfilePicture(MultipartFile profilePicFile, User user) {
-        try {
-            String picName = UUID.randomUUID().toString() + "_" + profilePicFile.getOriginalFilename();
-            Path profilePicPath = Paths.get(DOCUMENT_UPLOAD_DIR, picName);
-            Files.copy(profilePicFile.getInputStream(), profilePicPath);
-            return profilePicPath.toString();
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to store profile picture", e);
-        }
+    private String saveProfilePicture(MultipartFile profilePicFile) {
+        return fileStorageService.saveProfilePicture(profilePicFile, documentUploadDir);
     }
+
 
 
     @Override
