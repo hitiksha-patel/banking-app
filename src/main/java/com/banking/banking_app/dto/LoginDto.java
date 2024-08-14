@@ -10,12 +10,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class LoginDto {
+    private Long id;
     private String username;
     private String email;
     private String password;
     private String token;
 
-    public LoginDto(String username, String email, String token) {
+    public LoginDto(Long id, String username, String email, String token) {
+        this.id = id;
         this.username = username;
         this.email = email;
         this.token = token;
