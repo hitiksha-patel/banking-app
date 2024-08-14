@@ -6,11 +6,14 @@ import com.banking.banking_app.exception.UserAlreadyExistsException;
 import com.banking.banking_app.exception.UserNotFoundException;
 import com.banking.banking_app.service.UserService;
 import com.banking.banking_app.util.JwtUtil;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @RestController
@@ -23,8 +26,13 @@ public class UserController {
     @Autowired
     private JwtUtil jwtUtil;
 
-    public UserController(UserService userService){
+    @Autowired
+    private ObjectMapper objectMapper;
+
+    public UserController(UserService userService, ObjectMapper objectMapper){
+
         this.userService = userService;
+        this.objectMapper = objectMapper;
     }
 
     @PostMapping("/register")
@@ -48,10 +56,27 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDto> updateUser(@PathVariable Long id, @RequestBody UserDto userDto) {
+    public ResponseEntity<UserDto> updateUser(
+            @PathVariable Long id,
+            @RequestPart("userDto") String userDtoJson,
+            @RequestPart(value = "document", required = false) MultipartFile document,
+            @RequestPart(value = "profilePicFile", required = false) MultipartFile profilePicFile) {
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        UserDto userDto;
+        try {
+            userDto = objectMapper.readValue(userDtoJson, UserDto.class);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("Failed to parse JSON", e);
+        }
+
+        userDto.setDocument(document);
+        userDto.setProfilePicFile(profilePicFile);
+
         UserDto updatedUser = userService.updateUser(id, userDto);
         return ResponseEntity.ok(updatedUser);
     }
+
 
     @PostMapping("/logout")
     public ResponseEntity<?> logout(HttpServletRequest request) {
