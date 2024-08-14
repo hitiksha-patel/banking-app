@@ -2,6 +2,7 @@ package com.banking.banking_app.service.impl;
 
 import com.banking.banking_app.dto.LoginDto;
 import com.banking.banking_app.dto.UserDto;
+import com.banking.banking_app.entity.Document;
 import com.banking.banking_app.entity.User;
 import com.banking.banking_app.exception.InvalidPasswordException;
 import com.banking.banking_app.exception.UserAlreadyExistsException;
@@ -12,9 +13,13 @@ import com.banking.banking_app.service.UserService;
 //import com.banking.banking_app.util.PasswordUtil;
 import com.banking.banking_app.util.JwtUtil;
 import com.banking.banking_app.util.PasswordUtil;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
 
 @Service
 public class UserServiceImple implements UserService {
@@ -23,13 +28,23 @@ public class UserServiceImple implements UserService {
     private UserRepository userRepository;
 
     @Autowired
+    private DocumentService documentService;
+
+    @Autowired
     private JwtUtil jwtUtil;
+
+    @Autowired
+    private FileStorageService fileStorageService;
+
+    @Value("${user.profile-pic.upload-dir}")
+    private String documentUploadDir;
 
 
     @Autowired
-    public UserServiceImple(UserRepository userRepository, JwtUtil jwtUtil){
+    public UserServiceImple(UserRepository userRepository, JwtUtil jwtUtil, DocumentService documentService){
         this.userRepository = userRepository;
         this.jwtUtil = jwtUtil;
+        this.documentService = documentService;
     }
 
     @Override
@@ -70,7 +85,7 @@ public class UserServiceImple implements UserService {
 
             if (PasswordUtil.checkPassword(loginDto.getPassword(), user.getPassword())) {
                 String token = jwtUtil.generateToken(user);
-                return new LoginDto(user.getUsername(), user.getEmail(), token);
+                return new LoginDto(user.getId(), user.getUsername(), user.getEmail(), token);
             } else {
                 throw new InvalidPasswordException("Invalid Password for username: " + loginDto.getUsername());
             }
@@ -82,37 +97,42 @@ public class UserServiceImple implements UserService {
 
 
     @Override
+    @Transactional
     public UserDto updateUser(Long userId, UserDto userDto) {
-        try {
-            User existingUser = userRepository.findById(userId)
-                    .orElseThrow(() -> new UserNotFoundException("User not found with id " + userId));
+        User existingUser = userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException("User not found with id " + userId));
 
-            existingUser.setFirstname(userDto.getFirstname());
-            existingUser.setLastname(userDto.getLastname());
-            existingUser.setPhone(userDto.getPhone());
-            existingUser.setEmail(userDto.getEmail());
-            existingUser.setUsername(userDto.getUsername());
+        updateUserDetails(existingUser, userDto);
 
-            if (userDto.getPassword() != null && !userDto.getPassword().isEmpty()) {
-                existingUser.setPassword(PasswordUtil.hashPassword(userDto.getPassword()));
-            }
+        return UserMapper.mapToUserDto(userRepository.save(existingUser));
+    }
 
-            if (userDto.getRole() != null && !userDto.getRole().isEmpty()) {
-                existingUser.setRole(userDto.getRole());
-            }
+    private void updateUserDetails(User existingUser, UserDto userDto) {
+        existingUser.setFirstname(userDto.getFirstname());
+        existingUser.setLastname(userDto.getLastname());
+        existingUser.setPhone(userDto.getPhone());
+        existingUser.setEmail(userDto.getEmail());
+        existingUser.setUsername(userDto.getUsername());
 
-            User updatedUser = userRepository.save(existingUser);
-            // Return mapped UserDto
-            return UserMapper.mapToUserDto(updatedUser);
+        if (userDto.getPassword() != null && !userDto.getPassword().isEmpty()) {
+            existingUser.setPassword(PasswordUtil.hashPassword(userDto.getPassword()));
+        }
 
-        } catch (UserNotFoundException e) {
-            System.out.println(e.getMessage());
-            throw new UserNotFoundException("User not found");
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("Something went wrong!");
+        if (userDto.getRole() != null && !userDto.getRole().isEmpty()) {
+            existingUser.setRole(userDto.getRole());
+        }
+
+        if (userDto.getProfilePicFile() != null && !userDto.getProfilePicFile().isEmpty()) {
+            String profilePicPath = saveProfilePicture(userDto.getProfilePicFile());
+            existingUser.setProfilePic(profilePicPath);
         }
     }
+
+    private String saveProfilePicture(MultipartFile profilePicFile) {
+        return fileStorageService.saveProfilePicture(profilePicFile, documentUploadDir);
+    }
+
+
 
     @Override
     @Cacheable(value = "users", key = "#username")

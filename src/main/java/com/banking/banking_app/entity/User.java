@@ -42,6 +42,12 @@ public class User implements UserDetails {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Column(name = "profile_pic")
+    private String profilePic;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Document> documents;
+
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Account> accounts;
 
