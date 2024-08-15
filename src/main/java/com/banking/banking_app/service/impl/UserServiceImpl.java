@@ -22,7 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 @Service
-public class UserServiceImple implements UserService {
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
@@ -41,7 +41,7 @@ public class UserServiceImple implements UserService {
 
 
     @Autowired
-    public UserServiceImple(UserRepository userRepository, JwtUtil jwtUtil, DocumentService documentService){
+    public UserServiceImpl(UserRepository userRepository, JwtUtil jwtUtil, DocumentService documentService){
         this.userRepository = userRepository;
         this.jwtUtil = jwtUtil;
         this.documentService = documentService;
